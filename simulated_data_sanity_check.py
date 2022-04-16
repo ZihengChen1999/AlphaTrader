@@ -2,7 +2,10 @@ import pandas as pd
 import numpy as np
 import os
 
+
+root_path=os.pahth.join("Users","chenziheng","Desktop","AlphaTrader")
 folder_path="Data"
+
 prices=pd.read_csv(os.path.join(folder_path,"prices.csv"),index_col=0)
 signals={1:[],5:[],10:[],30:[]}
 for key in signals:
