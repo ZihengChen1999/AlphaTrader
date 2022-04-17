@@ -7,22 +7,22 @@ import matplotlib.pyplot as plt
 from environment import Tzero_Environment
 from agent_ppo import Proximal_Policy_Optimization
 
-
+root_path=os.path.join("/Users","chenziheng","Desktop","AlphaTrader")
 folder_path="Data"
-prices=pd.read_csv(os.path.join(folder_path,"prices.csv"),index_col=0)
+prices=pd.read_csv(os.path.join(root_path, folder_path,"prices.csv"),index_col=0)
 signals={1:[],5:[],10:[],30:[]}
 for key in signals:
-    signals[key]=pd.read_csv(os.path.join(folder_path,str(key)+"_minutes_signals.csv"), index_col=0)
+    signals[key]=pd.read_csv(os.path.join(root_path,folder_path,str(key)+"_minutes_signals.csv"), index_col=0)
 
 print("Data Loaded Suceesfully")
 
-TOTAL_EPISODE_NUMBER=200000
+TOTAL_EPISODE_NUMBER=100000
 SAMPLE_LENGTH=391
 # How many states are there in one sample
 DELAY=0
 # Delay in minutes, if cannot be executed immediately
 
-trial_num=0
+trial_num=1
 Output_folder="AlphaTrader_"+str(trial_num)
 
 if not os.path.exists(Output_folder):
@@ -57,7 +57,7 @@ parameter_dic={
 
 "Actor_entropy_multiplier_decay":0.9,
 
-"Actor_minimum_entropy_multiplier":0.005,
+"Actor_minimum_entropy_multiplier":0.01,
 
 "Clipping_up_ratio":0.2,
 
