@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 np.random.seed(0)
 
-root_path=os.pahth.join("/Users","chenziheng","Desktop","AlphaTrader")
+root_path=os.path.join("/Users","chenziheng","Desktop","AlphaTrader")
 folder_path="Data"
 
 if not os.path.exists(os.path.join(root_path, folder_path)):
     os.makedirs(os.path.join(root_path, folder_path))
+    
 
 # Generate Simulated Price Series Using Geometric Brownian Motion
 # mu is set to zero, the only way to make profit is out of volatility
