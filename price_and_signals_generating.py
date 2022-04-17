@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 np.random.seed(0)
 
-root_path=os.pahth.join("Users","chenziheng","Desktop","AlphaTrader")
+root_path=os.pahth.join("/Users","chenziheng","Desktop","AlphaTrader")
 folder_path="Data"
 
 if not os.path.exists(os.path.join(root_path, folder_path)):
@@ -53,10 +53,10 @@ for i in range(sample_number):
 prices=pd.DataFrame(prices)
 for key in signals:
     signals[key]=pd.DataFrame(signals[key])
-    signals[key].to_csv(os.path.join(os.path.join(root_path, folder_path),str(key)+"_minutes_signals.csv"))
+    signals[key].to_csv(os.path.join(root_path, folder_path ,str(key)+"_minutes_signals.csv"))
 
 
-prices.to_csv(os.path.join(os.path.join(root_path, folder_path), "prices.csv"))
+prices.to_csv(os.path.join(root_path, folder_path, "prices.csv"))
 
 
 
