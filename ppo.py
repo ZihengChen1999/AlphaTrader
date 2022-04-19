@@ -22,7 +22,7 @@ SAMPLE_LENGTH=391
 DELAY=0
 # Delay in minutes, if cannot be executed immediately
 
-trial_num=1
+trial_num=2
 Output_folder="AlphaTrader_"+str(trial_num)
 
 if not os.path.exists(Output_folder):
@@ -55,9 +55,9 @@ parameter_dic={
 
 "Actor_entropy_multiplier":1,
 
-"Actor_entropy_multiplier_decay":0.9,
+"Actor_entropy_multiplier_decay":0.95,
 
-"Actor_minimum_entropy_multiplier":0.01,
+"Actor_minimum_entropy_multiplier":0.2,
 
 "Clipping_up_ratio":0.2,
 
