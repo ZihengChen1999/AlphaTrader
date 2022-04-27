@@ -21,8 +21,9 @@ SAMPLE_LENGTH=391
 # How many states are there in one sample
 DELAY=0
 # Delay in minutes, if cannot be executed immediately
+VARIANCE_PENALTY=0
 
-trial_num=2
+trial_num=5
 Output_folder="AlphaTrader_"+str(trial_num)
 
 if not os.path.exists(Output_folder):
@@ -40,7 +41,9 @@ parameter_dic={
 
 "Discount_rate":0.8,
 
-"Whether_use_critic":False,
+"Variance_penalty": VARIANCE_PENALTY, 
+
+"Whether_use_critic":True,
 
 "Whether_use_rolling_mean_as_critic":False,
 
@@ -84,10 +87,12 @@ print("Trading_delay_minutes: ", DELAY)
 print(parameter_dic)
 
 
+pd.DataFrame([parameter_dic]).to_csv(os.path.join(Output_folder,"paramaters.csv"))
+
 # Hyperparameters Setting
 ####################################################################################
 
-rl_environment= Tzero_Environment(signals, prices, DELAY, SAMPLE_LENGTH)
+rl_environment= Tzero_Environment(signals, prices, DELAY, SAMPLE_LENGTH, VARIANCE_PENALTY)
 rl_agent=Proximal_Policy_Optimization(parameter_dic)
 
 current_episode_number=0
@@ -162,6 +167,8 @@ while current_episode_number<TOTAL_EPISODE_NUMBER:
         print("current episode: ", current_episode_number, "last batch pnl: ", np.array(PnL_list[-rl_agent.batch_size:]).mean())
         rl_agent.learn()
 
+pd.DataFrame(PnL_list).to_csv(os.path.join(Output_folder,"PnL_History.csv"))
+pd.DataFrame(entropy_list).to_csv(os.path.join(Output_folder,"Entropy_History.csv"))
 if rl_agent.whether_save_model==True:
     rl_agent.save_model()
     print("episode:", current_episode_number, "Model saved successfully")

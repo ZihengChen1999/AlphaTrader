@@ -1,7 +1,7 @@
 import numpy as np
 
 class Tzero_Environment:
-    def __init__(self, signals, prices, delay, sample_length):
+    def __init__(self, signals, prices, delay, sample_length, variance_penalty):
 
         self.signals=signals
         self.prices=prices
@@ -9,6 +9,7 @@ class Tzero_Environment:
         self.sample_number=0
         self.delay=delay
         self.sample_length=sample_length
+        self.variance_penalty=variance_penalty
 
         print("Total sample number: ", self.total_sample_number)
 
@@ -82,11 +83,12 @@ class Tzero_Environment:
             
         last_period_return = self.sample_prices.values[self.now_state_num+1]/self.sample_prices.values[self.now_state_num]-1
         
-        if last_period_return> 0.02:last_period_return= 0.02
-        if last_period_return<-0.02:last_period_return=-0.02
+        # if last_period_return> 0.02:last_period_return= 0.02
+        # if last_period_return<-0.02:last_period_return=-0.02
         # To eliminate the outliers
     
         reward = last_period_return * self.position
+        reward = reward - self.variance_penalty*reward**2
 
         self.now_state_num+=1
         next_state=self.get_now_state()
