@@ -34,7 +34,7 @@ sample_number=10000
 prices=[]
 returns=[]
 signals={1:[],5:[],10:[],30:[]}
-signals_IC={1:0.5,5:0.5,10:0.5,30:0.5}
+signals_IC={1:0.3,5:0.2,10:0.2,30:0.1}
 
 for i in range(sample_number):
     if i%1000==0:

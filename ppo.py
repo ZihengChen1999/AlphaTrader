@@ -16,14 +16,14 @@ for key in signals:
 
 print("Data Loaded Suceesfully")
 
-TOTAL_EPISODE_NUMBER=100000
+TOTAL_EPISODE_NUMBER=300000
 SAMPLE_LENGTH=391
 # How many states are there in one sample
 DELAY=0
 # Delay in minutes, if cannot be executed immediately
-VARIANCE_PENALTY=0
+VARIANCE_PENALTY=0.5
 
-trial_num=5
+trial_num=12
 Output_folder="AlphaTrader_"+str(trial_num)
 
 if not os.path.exists(Output_folder):

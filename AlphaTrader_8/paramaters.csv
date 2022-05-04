@@ -1,0 +1,2 @@
+,Batch_size,Mini_learn_epoch,Discount_rate,Variance_penalty,Whether_use_critic,Whether_use_rolling_mean_as_critic,Critic_train_batch_size,Critic_test_batch_size,Feature_number,Action_number,Actor_entropy_multiplier,Actor_entropy_multiplier_decay,Actor_minimum_entropy_multiplier,Clipping_up_ratio,Clipping_down_ratio,Actor_learning_rate,Critic_learning_rate,Critic_training_epoch,Save_model,Save_model_path,Load_model,Load_model_path
+0,2048,10,0.8,0.5,False,False,10000,3000,47,41,1,0.95,0.2,0.2,0.2,0.01,0.01,30,True,AlphaTrader_8,False,
